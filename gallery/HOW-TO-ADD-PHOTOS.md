@@ -1,6 +1,6 @@
 # How to add photos to the website
 
-Any photo you put in this `gallery` folder shows up in the "From the workshop" section of the website, usually within 1 to 2 minutes.
+Any photo you put in this `gallery` folder shows up in the "Recent work" section of the website, usually within 1 to 2 minutes.
 
 ## Add photos (phone or computer)
 

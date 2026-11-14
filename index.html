@@ -396,22 +396,22 @@ body.pinned .draw path,body.pinned .draw line,body.pinned .draw circle,body.pinn
     <div class="wrap reveal">
       <div class="head">
         <div class="part">
-          <span class="kicker mono">How a visit works</span>
+          <span class="kicker mono">How it works</span>
           <h2 class="big">Three steps. No guesswork.</h2>
         </div>
         <p class="lede part">You always know what's happening with your car, and what it will cost, before it happens.</p>
       </div>
       <div class="steps">
         <article class="step part">
-          <div class="img"><img src="assets/step-1.jpg" alt="Car keys and a blank job card on a workshop bench" loading="lazy" width="1600" height="1200"></div>
-          <div class="body"><span class="mono"><i aria-hidden="true"></i>Step 1</span><h3>Call or drop in.</h3><p>Tell us what the car is doing. A noise, a warning light, a service due. Whatever it is.</p></div>
+          <div class="img"><img src="assets/step-1.jpg" alt="Car keys and a blank job card on a work bench" loading="lazy" width="1600" height="1200"></div>
+          <div class="body"><span class="mono"><i aria-hidden="true"></i>Step 1</span><h3>Call or message.</h3><p>Tell us what the car is doing. A noise, a warning light, a service due. Whatever it is.</p></div>
         </article>
         <article class="step part">
           <div class="img"><img src="assets/step-2.jpg" alt="A torch lighting up a brake disc during an inspection" loading="lazy" width="1600" height="1200"></div>
           <div class="body"><span class="mono"><i aria-hidden="true"></i>Step 2</span><h3>We check it and call you.</h3><p>We find the problem and ring you with a clear price before any work starts.</p></div>
         </article>
         <article class="step part">
-          <div class="img"><img src="assets/step-3.jpg" alt="A finished blue-grey hatchback ready to collect at the workshop door" loading="lazy" width="1600" height="1200"></div>
+          <div class="img"><img src="assets/step-3.jpg" alt="A finished blue-grey hatchback ready to collect" loading="lazy" width="1600" height="1200"></div>
           <div class="body"><span class="mono"><i aria-hidden="true"></i>Step 3</span><h3>You say yes. We fix it.</h3><p>You pay what we agreed. You drive away knowing exactly what was done.</p></div>
         </article>
       </div>
@@ -453,8 +453,8 @@ body.pinned .draw path,body.pinned .draw line,body.pinned .draw circle,body.pinn
     <div class="wrap grid">
       <div class="stick reveal">
         <span class="kicker mono part">What we fix</span>
-        <h2 class="big part">Any car through the door.</h2>
-        <p class="lede part">Everyday runarounds, family cars and work vans. If it's making a noise you don't like, bring it in.</p>
+        <h2 class="big part">Everyday cars. Fixed properly.</h2>
+        <p class="lede part">A local, independent mechanic in Harlow. Runarounds, family cars and work vans. If it's making a noise you don't like, give us a call.</p>
       </div>
       <div class="reveal">
         <ul class="svc part">
@@ -477,15 +477,15 @@ body.pinned .draw path,body.pinned .draw line,body.pinned .draw circle,body.pinn
     <div class="wrap">
       <div class="head reveal">
         <div>
-          <span class="kicker mono part">From the workshop</span>
+          <span class="kicker mono part">Recent work</span>
           <h2 class="big part">Real jobs. Real cars.</h2>
         </div>
-        <p class="lede part">A look at what's been through the doors lately.</p>
+        <p class="lede part">A look at some of the cars we've fixed lately.</p>
       </div>
       <div class="shots" id="shots"></div>
       <div class="shots-empty" id="shotsEmpty" hidden>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10.5" r="1.8"/><path d="M21 16l-5-5-8 8"/></svg>
-        <p>Photos from the workshop are coming soon.</p>
+        <p>Photos of recent jobs are coming soon.</p>
       </div>
     </div>
   </section>
@@ -522,6 +522,7 @@ body.pinned .draw path,body.pinned .draw line,body.pinned .draw circle,body.pinn
         <details><summary>Do I have to say yes?<span class="pm" aria-hidden="true"></span></summary><p>No. If you'd rather think about it or get another quote, that's fine. No pressure.</p></details>
         <details><summary>What if you find something else wrong?<span class="pm" aria-hidden="true"></span></summary><p>We stop and call you first. We explain what we found and what it costs, and you decide. It never just appears on the bill.</p></details>
         <details><summary>Can I see the old parts?<span class="pm" aria-hidden="true"></span></summary><p>Of course. Ask and we'll keep them for you, or show you on the car.</p></details>
+        <details><summary>Where are you based?<span class="pm" aria-hidden="true"></span></summary><p>We work from home in Harlow, Essex. You bring the car to us, and we'll send you the address when you book. No big garage overheads, so you're not paying for a fancy reception.</p></details>
         <!-- PLACEHOLDER: confirm MOT and opening hours with the owner -->
         <details><summary>Do you do MOTs?<span class="pm" aria-hidden="true"></span></summary><p>Ask us when you call. Our full list of services is coming soon.</p></details>
         <details><summary>When are you open?<span class="pm" aria-hidden="true"></span></summary><p>Opening times are coming soon. For now, call 07927 742332 and we'll find a time that works for you.</p></details>
@@ -870,7 +871,7 @@ body.pinned .draw path,body.pinned .draw line,body.pinned .draw circle,body.pinn
       b.type = 'button'; b.className = 'shot';
       b.setAttribute('aria-label', 'Open photo' + (p.cap ? ': ' + p.cap : ' ' + (i + 1)));
       const img = new Image();
-      img.src = p.src; img.alt = p.cap || 'A job from the Harlow Motor Works workshop';
+      img.src = p.src; img.alt = p.cap || 'A recent repair by Harlow Motor Works';
       img.loading = 'lazy'; img.decoding = 'async';
       img.onerror = () => { b.remove(); photos = photos.filter(x => x !== p); if (!photos.length) emptyEl.hidden = false; };  // not published yet, or not an image
       b.appendChild(img);
@@ -882,7 +883,7 @@ body.pinned .draw path,body.pinned .draw line,body.pinned .draw circle,body.pinn
   }
   function showLb(i){
     lbIndex = (i + photos.length) % photos.length;
-    lbImg.src = photos[lbIndex].src; lbImg.alt = photos[lbIndex].cap || 'Workshop photo';
+    lbImg.src = photos[lbIndex].src; lbImg.alt = photos[lbIndex].cap || 'Recent repair photo';
     lbCap.textContent = (photos[lbIndex].cap ? photos[lbIndex].cap + '  ' : '') + (lbIndex + 1) + ' / ' + photos.length;
   }
   function openLb(i, from){ lbReturn = from; showLb(i); lb.classList.add('open'); document.getElementById('lbClose').focus(); }
