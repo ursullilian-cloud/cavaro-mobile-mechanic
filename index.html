@@ -222,6 +222,29 @@ h2.big{font-size:clamp(2.6rem,5.6vw,5rem)}
 .svc-note{margin-top:26px;color:var(--text-secondary)}
 @media (max-width:900px){.services .grid{grid-template-columns:1fr}.services .stick{position:static}}
 
+/* Gallery: photos the owner uploads to /gallery */
+.gallery .head{display:grid;grid-template-columns:1fr auto;gap:24px 48px;align-items:end}
+.gallery .count{color:var(--text-secondary)}
+.shots{columns:3 300px;column-gap:18px;margin-top:52px}
+.shot{break-inside:avoid;margin:0 0 18px;position:relative;border-radius:14px;overflow:hidden;background:var(--panel);border:1px solid var(--line);cursor:zoom-in;display:block;width:100%;padding:0;opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .8s var(--ease),border-color .4s var(--ease)}
+.shot.in{opacity:1;transform:none}
+.shot:hover{border-color:var(--line-strong)}
+.shot img{width:100%;height:auto;transition:transform 1.2s var(--ease)}
+.shot:hover img{transform:scale(1.03)}
+.shot figcaption{position:absolute;left:12px;bottom:12px;padding:6px 10px;color:var(--text-primary);font-size:.7rem}
+.shots-empty{margin-top:52px;border:1px dashed var(--line-strong);border-radius:18px;padding:56px 24px;text-align:center;color:var(--text-secondary)}
+.shots-empty svg{width:40px;height:40px;margin:0 auto 14px;color:var(--line-strong);display:block}
+.lightbox{position:fixed;inset:0;z-index:90;background:rgba(8,11,15,.94);display:flex;align-items:center;justify-content:center;padding:56px 16px;opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility 0s linear .4s}
+.lightbox.open{opacity:1;visibility:visible;transition:opacity .4s var(--ease)}
+.lightbox img{max-width:min(1400px,100%);max-height:100%;border-radius:10px;object-fit:contain}
+.lightbox button{position:absolute;background:rgba(26,34,42,.8);border:1px solid var(--line-strong);color:var(--text-primary);width:48px;height:48px;border-radius:50%;cursor:pointer;font:600 1.3rem/1 var(--body);transition:border-color .3s var(--ease)}
+.lightbox button:hover{border-color:var(--text-primary)}
+.lightbox .x{top:16px;right:16px}
+.lightbox .prev{left:16px;top:50%;transform:translateY(-50%)}
+.lightbox .next{right:16px;top:50%;transform:translateY(-50%)}
+.lightbox .cap{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);color:var(--text-secondary)}
+@media (max-width:720px){.gallery .head{grid-template-columns:1fr}}
+
 /* What you won't get: struck through */
 .wont{text-align:center}
 .wont .list{list-style:none;padding:0;margin:56px auto 0;max-width:980px;display:grid;gap:clamp(14px,2vw,22px)}
@@ -277,7 +300,8 @@ footer a:hover{color:var(--text-primary)}
   .draw path,.draw line,.draw circle,.draw rect,.wont .list li svg path{stroke-dashoffset:0}
   html{scroll-behavior:auto}
 }
-body.pinned .reveal .part{opacity:1;transform:none;transition:none}
+body.pinned .reveal .part,body.pinned .shot{opacity:1;transform:none;transition:none}
+@media (prefers-reduced-motion: reduce){.shot{opacity:1;transform:none}}
 body.pinned .draw path,body.pinned .draw line,body.pinned .draw circle,body.pinned .draw rect,body.pinned .wont .list li svg path{stroke-dashoffset:0;transition:none}
 </style>
 </head>
@@ -294,6 +318,7 @@ body.pinned .draw path,body.pinned .draw line,body.pinned .draw circle,body.pinn
     <li><a href="#promise">Our promise</a></li>
     <li><a href="#how">How it works</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <a class="btn btn-accent" href="tel:+447927742332"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg><span class="long">Call 07927 742332</span><span class="short">Call</span></a>
@@ -446,6 +471,32 @@ body.pinned .draw path,body.pinned .draw line,body.pinned .draw circle,body.pinn
       </div>
     </div>
   </section>
+
+  <section class="gallery" id="gallery">
+    <!-- Photos come from the /gallery folder in the GitHub repo. Upload a photo there and it appears here. -->
+    <div class="wrap">
+      <div class="head reveal">
+        <div>
+          <span class="kicker mono part">From the workshop</span>
+          <h2 class="big part">Real jobs. Real cars.</h2>
+        </div>
+        <p class="lede part">A look at what's been through the doors lately.</p>
+      </div>
+      <div class="shots" id="shots"></div>
+      <div class="shots-empty" id="shotsEmpty" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10.5" r="1.8"/><path d="M21 16l-5-5-8 8"/></svg>
+        <p>Photos from the workshop are coming soon.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <img id="lbImg" alt="">
+    <span class="cap mono" id="lbCap"></span>
+    <button class="prev" id="lbPrev" type="button" aria-label="Previous photo">&#8249;</button>
+    <button class="next" id="lbNext" type="button" aria-label="Next photo">&#8250;</button>
+    <button class="x" id="lbClose" type="button" aria-label="Close">&#215;</button>
+  </div>
 
   <section class="wont" id="wont">
     <div class="wrap">
@@ -783,6 +834,70 @@ body.pinned .draw path,body.pinned .draw line,body.pinned .draw circle,body.pinn
     window.open('https://wa.me/447927742332?text=' + encodeURIComponent(msg), '_blank', 'noopener');
     document.getElementById('callPanel').parentElement.parentElement.classList.add('done');
   });
+
+  // Gallery: lists whatever photos are in the repo's /gallery folder
+  const GALLERY_API = 'https://api.github.com/repos/ursullilian-cloud/harlow-motor-works/contents/gallery';
+  const shotsEl = document.getElementById('shots');
+  const emptyEl = document.getElementById('shotsEmpty');
+  const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
+  let photos = [], lbIndex = 0, lbReturn = null;
+  const captionFrom = name => {
+    const base = name.replace(/\.[^.]+$/, '');
+    if (/^(img|dsc|pxl|photo|image|whatsapp|screenshot)?[\s_-]*[\d_\s-]+$/i.test(base) || /^(IMG|DSC|PXL)[_-]/i.test(base) || /whatsapp image/i.test(base)) return '';
+    const t = base.replace(/^[\d_\s-]+/, '').replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim();
+    return t.charAt(0).toUpperCase() + t.slice(1);
+  };
+  async function loadGallery(){
+    let files;
+    try { files = JSON.parse(sessionStorage.getItem('hmw-gallery') || 'null'); } catch {}
+    if (!files){
+      const res = await fetch(GALLERY_API, { headers: { Accept: 'application/vnd.github+json' } });
+      if (res.status === 404) files = [];
+      else if (!res.ok) throw new Error('gallery ' + res.status);
+      else files = (await res.json()).filter(f => f.type === 'file' && /\.(jpe?g|png|webp|avif|gif)$/i.test(f.name)).map(f => f.name);
+      try { sessionStorage.setItem('hmw-gallery', JSON.stringify(files)); } catch {}
+    }
+    photos = files.sort((a, b) => b.localeCompare(a, undefined, { numeric: true })).map(n => ({ src: 'gallery/' + encodeURIComponent(n), cap: captionFrom(n) }));
+    renderGallery();
+  }
+  function renderGallery(){
+    shotsEl.innerHTML = '';
+    if (!photos.length){ emptyEl.hidden = false; return; }
+    emptyEl.hidden = true;
+    const gio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); gio.unobserve(e.target); } }), { threshold: 0.1 });
+    photos.forEach((p, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'shot';
+      b.setAttribute('aria-label', 'Open photo' + (p.cap ? ': ' + p.cap : ' ' + (i + 1)));
+      const img = new Image();
+      img.src = p.src; img.alt = p.cap || 'A job from the Harlow Motor Works workshop';
+      img.loading = 'lazy'; img.decoding = 'async';
+      img.onerror = () => { b.remove(); photos = photos.filter(x => x !== p); if (!photos.length) emptyEl.hidden = false; };  // not published yet, or not an image
+      b.appendChild(img);
+      if (p.cap){ const c = document.createElement('figcaption'); c.className = 'chip mono'; c.textContent = p.cap; b.appendChild(c); }
+      b.addEventListener('click', () => openLb(photos.indexOf(p), b));
+      shotsEl.appendChild(b);
+      if (RM.matches || document.body.classList.contains('pinned')) b.classList.add('in'); else gio.observe(b);
+    });
+  }
+  function showLb(i){
+    lbIndex = (i + photos.length) % photos.length;
+    lbImg.src = photos[lbIndex].src; lbImg.alt = photos[lbIndex].cap || 'Workshop photo';
+    lbCap.textContent = (photos[lbIndex].cap ? photos[lbIndex].cap + '  ' : '') + (lbIndex + 1) + ' / ' + photos.length;
+  }
+  function openLb(i, from){ lbReturn = from; showLb(i); lb.classList.add('open'); document.getElementById('lbClose').focus(); }
+  function closeLb(){ lb.classList.remove('open'); lbReturn?.focus(); }
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', () => showLb(lbIndex - 1));
+  document.getElementById('lbNext').addEventListener('click', () => showLb(lbIndex + 1));
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    else if (e.key === 'ArrowLeft') showLb(lbIndex - 1);
+    else if (e.key === 'ArrowRight') showLb(lbIndex + 1);
+  });
+  loadGallery().catch(() => { emptyEl.hidden = false; });
 
   applyHeroMode();
 })();
