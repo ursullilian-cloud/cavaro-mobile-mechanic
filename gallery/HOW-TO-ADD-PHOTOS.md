@@ -4,7 +4,7 @@ Any photo you put in this `gallery` folder shows up in the "Recent work" section
 
 ## Add photos (phone or computer)
 
-1. Open https://github.com/ursullilian-cloud/harlow-motor-works/tree/main/gallery and sign in.
+1. Open https://github.com/ursullilian-cloud/cavaro-mobile-mechanic/tree/main/gallery and sign in.
 2. Tap **Add file**, then **Upload files**.
 3. Drag your photos in (on a phone, tap "choose your files" and pick them from your gallery).
 4. Tap the green **Commit changes** button.
